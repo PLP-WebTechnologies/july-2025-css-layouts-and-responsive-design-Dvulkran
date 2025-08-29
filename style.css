@@ -1,0 +1,475 @@
+/* ==============================================
+   RESET & BASE STYLES
+   ============================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+/* ==============================================
+   MAIN LAYOUT - CSS GRID
+   ============================================== */
+.container {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "nav nav nav"
+        "main main sidebar"
+        "footer footer footer";
+    grid-template-columns: 1fr 1fr 300px;
+    grid-template-rows: auto auto 1fr auto;
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* ==============================================
+   HEADER SECTION
+   ============================================== */
+.header {
+    grid-area: header;
+    background: linear-gradient(135deg, #ff6b6b, #feca57);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 20%, transparent 21%);
+    background-size: 20px 20px;
+    animation: float 20s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateX(-20px) translateY(-20px); }
+    100% { transform: translateX(20px) translateY(20px); }
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==============================================
+   NAVIGATION - FLEXBOX
+   ============================================== */
+.nav {
+    grid-area: nav;
+    background: #2c3e50;
+    padding: 0;
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    flex-wrap: wrap;
+}
+
+.nav li {
+    margin: 0 1rem;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.nav a:hover {
+    background: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+.nav a:hover::before {
+    left: 100%;
+}
+
+/* ==============================================
+   MAIN CONTENT AREA
+   ============================================== */
+.main {
+    grid-area: main;
+    padding: 2rem;
+    background: white;
+}
+
+.main h2 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    position: relative;
+}
+
+.main h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b6b, #feca57);
+    border-radius: 2px;
+}
+
+.main p {
+    margin-bottom: 1.5rem;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+/* ==============================================
+   CARD GRID - FLEXBOX
+   ============================================== */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.card {
+    flex: 1 1 300px;
+    background: linear-gradient(145deg, #f0f4f8, #e2e8f0);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b6b, #feca57, #48cae4);
+    border-radius: 15px 15px 0 0;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.card p {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+/* ==============================================
+   SIDEBAR
+   ============================================== */
+.sidebar {
+    grid-area: sidebar;
+    background: #f8f9fa;
+    padding: 2rem;
+    border-left: 1px solid #e9ecef;
+}
+
+.sidebar h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.widget {
+    background: white;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #3498db;
+}
+
+.widget h4 {
+    color: #2c3e50;
+    margin-bottom: 0.8rem;
+}
+
+.widget p, .widget li {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.widget ul {
+    padding-left: 1.2rem;
+}
+
+.widget li {
+    margin-bottom: 0.5rem;
+}
+
+/* ==============================================
+   FOOTER - FLEXBOX
+   ============================================== */
+.footer {
+    grid-area: footer;
+    background: #2c3e50;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #3498db;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background: #3498db;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* ==============================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   ============================================== */
+
+/* Tablet Layout */
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-areas:
+            "header"
+            "nav"
+            "main"
+            "sidebar"
+            "footer";
+        grid-template-columns: 1fr;
+        margin: 10px;
+        border-radius: 15px;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .nav ul {
+        height: auto;
+        padding: 1rem 0;
+    }
+
+    .nav li {
+        margin: 0.5rem;
+    }
+
+    .main, .sidebar {
+        padding: 1.5rem;
+    }
+
+    .card-container {
+        gap: 1rem;
+    }
+
+    .card {
+        flex: 1 1 250px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+}
+
+/* Mobile Layout */
+@media screen and (max-width: 480px) {
+    .container {
+        margin: 5px;
+        border-radius: 10px;
+    }
+
+    .header {
+        padding: 1.5rem 1rem;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .header p {
+        font-size: 1rem;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+
+    .nav a {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .main, .sidebar {
+        padding: 1rem;
+    }
+
+    .main h2 {
+        font-size: 1.6rem;
+    }
+
+    .card-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .card {
+        flex: none;
+    }
+
+    .widget {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .footer {
+        padding: 1.5rem 1rem;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+/* High-resolution displays */
+@media screen and (min-width: 1200px) {
+    .container {
+        grid-template-columns: 1fr 1fr 350px;
+    }
+
+    .header h1 {
+        font-size: 3rem;
+    }
+
+    .main {
+        padding: 2.5rem;
+    }
+
+    .sidebar {
+        padding: 2.5rem;
+    }
+}
+
+/* ==============================================
+   ACCESSIBILITY & ANIMATIONS
+   ============================================== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus styles for accessibility */
+a:focus, button:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
